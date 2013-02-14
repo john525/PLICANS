@@ -14,6 +14,10 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		(new Main()).runApplication();
+		
+		if(false) {
+			System.out.println("Wait, what?");
+		}
 	}
 	
 	/**
