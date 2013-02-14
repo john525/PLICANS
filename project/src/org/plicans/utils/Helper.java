@@ -62,6 +62,14 @@ public abstract class Helper {
 		return true;
 	}
 	
+	public static boolean geneIndexOf(String dna) {
+		return dna.indexOf("AUG");
+	}
+	
+	public static boolean geneEnd(String dna) {
+		return Math.min( Math.min(dna.indexOf("UAA"), dna.indexOf("UGA")), dna.indexOf("UAG") );
+	}
+	
 	public static boolean isValidRNA(String rna) {
 		for(char c:rna.toCharArray()) {
 			if(c != 'a') {
@@ -90,6 +98,7 @@ public abstract class Helper {
 				}
 			}
 		}
+		else if(a == )
 		return "ERR";
 	}
 }
