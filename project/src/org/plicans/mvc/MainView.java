@@ -52,6 +52,7 @@ public class MainView extends View {
 		rnaField = new JTextField(20);
 		rnaField.setFont(geneticFont);
 		rnaField.setName("rnaField");
+		rnaField.setEditable(false);
 		rnaField.addKeyListener(new FieldListener());
 		geneticPanel.add(rnaField);
 		geneticPanel.add(new JLabel("Proteins:"));
@@ -94,9 +95,9 @@ public class MainView extends View {
 				JTextField source = (JTextField) e.getSource();
 				String name = source.getName();
 				if(name.equals("dnaField")) {
-					model.setDNA(source.getText());
+					model.setDNA(source.getText().toUpperCase());
 				} else if(name.equals("rnaField")) {
-					model.setRNA(source.getText());
+					model.setRNA(source.getText().toUpperCase());
 				}
 				refresh();
 			}

@@ -50,9 +50,9 @@ public abstract class Helper {
 	}
 	
 	public static boolean isValidDNA(String dna) {
-		for(char c:dna.toCharArray()) {
+		for(char c:dna.toLowerCase().toCharArray()) {
 			if(c != 'a') {
-				if(c != 't') {
+				if(c != 'u') {
 					if(c != 'c') {
 						if(c != 'g') {
 							return false;
@@ -67,7 +67,7 @@ public abstract class Helper {
 	public static boolean isValidRNA(String rna) {
 		for(char c:rna.toCharArray()) {
 			if(c != 'a') {
-				if(c != 'u') {
+				if(c != 't') {
 					if(c != 'c') {
 						if(c != 'g') {
 							return false;
@@ -90,7 +90,7 @@ public abstract class Helper {
 	public static String toProtein(String dna) {
 		if(!isValidDNA(dna)) return "";
 		
-		int start = geneIndexOf(dna), stop = geneEnd(dna) < 0 ? geneEnd(dna) : dna.length();
+		int start = geneIndexOf(dna), stop = geneEnd(dna) >= 0 ? geneEnd(dna) : dna.length();
 		
 		if(start == -1) return "";
 		
@@ -98,7 +98,7 @@ public abstract class Helper {
 		
 		StringBuilder protein = new StringBuilder();
 		
-		for(int i = 0; i < gene.length(); i+=3) {
+		for(int i = 0; i < gene.length() - 3; i+=3) {
 			String codon = gene.substring(i, i+3);
 			String aa = BioData.getAA(codon);
 			protein.append(aa);
