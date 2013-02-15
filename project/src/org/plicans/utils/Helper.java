@@ -6,6 +6,8 @@ package org.plicans.utils;
  */
 import java.awt.*;
 
+import org.plicans.utils.data.BioData;
+
 public abstract class Helper {
 	/**
 	 * Takes the specified dimension and returns bounds for that dimension that center
@@ -62,14 +64,6 @@ public abstract class Helper {
 		return true;
 	}
 	
-	public static boolean geneIndexOf(String dna) {
-		return dna.indexOf("AUG");
-	}
-	
-	public static boolean geneEnd(String dna) {
-		return Math.min( Math.min(dna.indexOf("UAA"), dna.indexOf("UGA")), dna.indexOf("UAG") );
-	}
-	
 	public static boolean isValidRNA(String rna) {
 		for(char c:rna.toCharArray()) {
 			if(c != 'a') {
@@ -85,24 +79,31 @@ public abstract class Helper {
 		return true;
 	}
 	
-	public static String toProtein() {
-		
+	public static int geneIndexOf(String dna) {
+		return dna.indexOf("AUG");
 	}
 	
-	public static String codonToAminoAcid(String s) {
-		char a = s.charAt(0);
-		char b = s.charAt(1);
-		char c = s.charAt(2);
-		if(a == 'u') {
-			if(b == 'u') {
-				if(c == 'u' || c == 'c') {
-					return "Phe";
-				} else if(c == 'a' || c == 'g') {
-					return "Leu";
-				}
-			}
+	public static int geneEnd(String dna) {
+		return Math.min( Math.min(dna.indexOf("UAA"), dna.indexOf("UGA")), dna.indexOf("UAG") );
+	}
+	
+	public static String toProtein(String dna) {
+		if(!isValidDNA(dna)) return "";
+		
+		int start = geneIndexOf(dna), stop = geneEnd(dna) < 0 ? geneEnd(dna) : dna.length();
+		
+		if(start == -1) return "";
+		
+		String gene = dna.substring(start, stop);
+		
+		StringBuilder protein = new StringBuilder();
+		
+		for(int i = 0; i < gene.length(); i+=3) {
+			String codon = gene.substring(i, i+3);
+			String aa = BioData.getAA(codon);
+			protein.append(aa);
 		}
-		else if(a == )
-		return "ERR";
+		
+		return protein.toString();
 	}
 }

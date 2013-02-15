@@ -22,21 +22,23 @@ public class PlicansModel extends Model {
 	}
 	
 	public String getAbbreviatedProteins() {
-		String rna = dnaToRna(dna);
-		StringBuilder ap = new StringBuilder();
-		for(int i = 0; i < rna.length(); i += 3) {
-			if(i + 2 < rna.length()) {
-				ap.append(Helper.codonToAminoAcid(rna.substring(i, i + 3)));
-			} else {
-				for(int j = 0; j < (rna.length() - i); j++) {
-					ap.append('.');
-				}
-			}
-			if(i + 3 < rna.length()) {
-				ap.append('-');
-			}
-		}
-		return ap.toString();
+		return Helper.toProtein(dna);
+		
+//		String rna = dnaToRna(dna);
+//		StringBuilder ap = new StringBuilder();
+//		for(int i = 0; i < rna.length(); i += 3) {
+//			if(i + 2 < rna.length()) {
+//				ap.append(Helper.codonToAminoAcid(rna.substring(i, i + 3)));
+//			} else {
+//				for(int j = 0; j < (rna.length() - i); j++) {
+//					ap.append('.');
+//				}
+//			}
+//			if(i + 3 < rna.length()) {
+//				ap.append('-');
+//			}
+//		}
+//		return ap.toString();
 	}
 	
 	private String dnaToRna(String dna) {
