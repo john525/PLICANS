@@ -85,6 +85,10 @@ public abstract class Helper {
 		return true;
 	}
 	
+	public static String toProtein() {
+		
+	}
+	
 	public static String codonToAminoAcid(String s) {
 		char a = s.charAt(0);
 		char b = s.charAt(1);

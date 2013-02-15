@@ -23,6 +23,8 @@ public class MainView extends View {
 	private JTextField rnaField;
 	private JLabel abbreviatedProteinsLabel;
 	
+	private ProteinDisplayPanel proteinPanel;
+	
 	private Border defaultBorder;
 	
 	public MainView(Controller controller, Model model, Dimension size) {
@@ -83,13 +85,13 @@ public class MainView extends View {
 	}
 	
 	private class FieldListener implements KeyListener {
-		public void keyPressed(KeyEvent arg0) {
+		public void keyPressed(KeyEvent e) {
 			
 		}
 
-		public void keyReleased(KeyEvent arg0) {
-			if(arg0.getSource() instanceof JTextField) {
-				JTextField source = (JTextField)arg0.getSource();
+		public void keyReleased(KeyEvent e) {
+			if(e.getSource() instanceof JTextField) {
+				JTextField source = (JTextField) e.getSource();
 				String name = source.getName();
 				if(name.equals("dnaField")) {
 					model.setDNA(source.getText());
@@ -100,7 +102,7 @@ public class MainView extends View {
 			}
 		}
 
-		public void keyTyped(KeyEvent arg0) {
+		public void keyTyped(KeyEvent e) {
 			
 		}
 	}
