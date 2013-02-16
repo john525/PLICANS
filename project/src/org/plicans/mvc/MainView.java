@@ -9,7 +9,7 @@ import javax.swing.border.Border;
 import org.plicans.utils.*;
 
 /**
- * The View that the program starts with.  Shows the 
+ * The View that the program starts with.  Shows the main view.
  * @author Daniel Glus
  */
 public class MainView extends View {
@@ -23,7 +23,7 @@ public class MainView extends View {
 	private JTextField rnaField;
 	private JLabel abbreviatedProteinsLabel;
 	
-	private ProteinDisplayPanel proteinPanel;
+	//private ProteinDisplayPanel proteinPanel;
 	
 	private Border defaultBorder;
 	
@@ -52,7 +52,6 @@ public class MainView extends View {
 		rnaField = new JTextField(20);
 		rnaField.setFont(geneticFont);
 		rnaField.setName("rnaField");
-		rnaField.setEditable(false);
 		rnaField.addKeyListener(new FieldListener());
 		geneticPanel.add(rnaField);
 		geneticPanel.add(new JLabel("Proteins:"));
@@ -72,7 +71,7 @@ public class MainView extends View {
 	public void refresh() {
 		dnaField.setText(model.getDNA());
 		rnaField.setText(model.getRNA());
-		abbreviatedProteinsLabel.setText(model.getAbbreviatedProteins());
+		abbreviatedProteinsLabel.setText(Helper.rnaToProtein(model.getRNA()));
 		if(Helper.isValidDNA(dnaField.getText())) {
 			dnaField.setBorder(defaultBorder);
 		} else {

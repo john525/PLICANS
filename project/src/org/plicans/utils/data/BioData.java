@@ -2,13 +2,17 @@ package org.plicans.utils.data;
 
 import java.util.HashMap;
 
+/**
+ * Stores the RNA codon table.
+ * @author John Lhota
+ */
 public class BioData {
 	
 	private static HashMap<String, String> t;
 	
 	static {
 		t = new HashMap<String, String>();
-		t.put("AUG", ">M"); //Note that we are using one-letter protein abbrs.
+		t.put("AUG", ">M"); // Note that we are using one-letter protein abbreviations.
 		t.put("AUA", "I");
 		t.put("AUC", "I");
 		t.put("AUU", "I");
@@ -18,7 +22,7 @@ public class BioData {
 		t.put("CUG", "I");
 		t.put("UUA", "I");
 		t.put("UUG", "I");
-		t.put("UUU", "F");
+		t.put("UUU", "F");	// Phenylalanine
 		t.put("UUC", "F");
 		t.put("GUU", "V");
 		t.put("GUC", "V");
@@ -73,7 +77,13 @@ public class BioData {
 		t.put("UAG", "<");//Amber
 	}
 	
+	/**
+	 * Returns the single-letter abbreviation for the amino acid associated with the amino acid.
+	 * @param codon The codon, in <b><i><u>RNA</u></i></b>
+	 * @return The single-letter abbreviation for the amino acid.
+	 */
 	public static String getAA(String codon) {
+		System.out.println("codon: " + codon);
 		if(t.containsKey(codon)) {
 			return t.get(codon);
 		}

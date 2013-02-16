@@ -5,5 +5,4 @@ public abstract class Model {
 	public abstract void setDNA(String value);
 	public abstract String getRNA();
 	public abstract void setRNA(String value);
-	public abstract String getAbbreviatedProteins();
 }

@@ -49,10 +49,15 @@ public abstract class Helper {
 		return String.format("%,d", number);
 	}
 	
+	/**
+	 * Determines whether or not a given string represents a valid piece of DNA.
+	 * @param dna A string representing some genetic code.
+	 * @return Whether or not the string is valid.
+	 */
 	public static boolean isValidDNA(String dna) {
 		for(char c:dna.toLowerCase().toCharArray()) {
 			if(c != 'a') {
-				if(c != 'u') {
+				if(c != 't') {
 					if(c != 'c') {
 						if(c != 'g') {
 							return false;
@@ -64,10 +69,15 @@ public abstract class Helper {
 		return true;
 	}
 	
+	/**
+	 * Determines whether or not a given string represents a valid piece of RNA.
+	 * @param rna A string representing some genetic code.
+	 * @return Whether or not the string is valid.
+	 */
 	public static boolean isValidRNA(String rna) {
 		for(char c:rna.toCharArray()) {
 			if(c != 'a') {
-				if(c != 't') {
+				if(c != 'u') {
 					if(c != 'c') {
 						if(c != 'g') {
 							return false;
@@ -87,16 +97,17 @@ public abstract class Helper {
 		return Math.min( Math.min(dna.indexOf("UAA"), dna.indexOf("UGA")), dna.indexOf("UAG") );
 	}
 	
-	public static String toProtein(String dna) {
-		if(!isValidDNA(dna)) return "";
+	/**
+	 * Translates a slice of RNA to a string of single-letter protein abbreviations.
+	 */
+	public static String rnaToProtein(String rna) {	
+		/*
+		int start = geneIndexOf(rna), stop = geneEnd(rna) >= 0 ? geneEnd(rna) : rna.length();
 		
-		int start = geneIndexOf(dna), stop = geneEnd(dna) >= 0 ? geneEnd(dna) : dna.length();
-		
-		if(start == -1) return "";
-		
-		String gene = dna.substring(start, stop);
-		
+		String gene = rna.substring(start, stop);
+		*/
 		StringBuilder protein = new StringBuilder();
+		String gene = rna;
 		
 		for(int i = 0; i < gene.length() - 3; i+=3) {
 			String codon = gene.substring(i, i+3);
